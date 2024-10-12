@@ -1,12 +1,16 @@
 import { Server } from "socket.io";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 const io = new Server({
     cors: {
-        origin: "http://localhost:5173",
+        origin: [process.env.CLIENT_URL, "http://localhost:5173"],
     },
 });
 
 let onlineUser = [];
+const PORT_SOCKET = process.env.PORT || 4000;
 
 // whenever connecting to the server, create a new user
 const addUser = (userId, socketId) => {
@@ -45,4 +49,4 @@ io.on("connection", (socket) => {
     });
 });
 
-io.listen("4000");
+io.listen(`${PORT_SOCKET}`);

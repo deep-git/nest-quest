@@ -11,14 +11,30 @@ import messageRoute from "./routes/message.route.js";
 
 const app = express();
 app.use(express.json());
-
-app.use(cors({
-    origin: "http://localhost:5173",
-    credentials: true
-}));
-
 app.use(cookieParser());
 dotenv.config();
+
+const allowedOrigins = [
+    process.env.CLIENT_URL, // Production
+    'http://localhost:5173' // Development
+];
+
+const corsOptions = {
+    origin: function (origin, callback) {
+        if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
+            callback(null, true);
+        } else {
+            console.error(`CORS error: Origin ${origin} not allowed`);
+            callback(new Error('Not allowed by CORS'));
+        }
+    },
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    credentials: true,
+};
+
+app.use(cors(corsOptions));
+
+app.options('*', cors(corsOptions));
 
 const PORT = process.env.PORT || 3000;
 

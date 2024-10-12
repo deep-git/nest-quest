@@ -3,7 +3,7 @@ import axios from "axios";
 // Create baseURL for axios fetch calls to prevent constantly typing in the entire URL for each fetch
 
 const apiRequest = axios.create({
-    baseURL: "http://localhost:3000/api",
+    baseURL: import.meta.env.VITE_API_URL,
     withCredentials: true, // enable cookies
 });
 
