@@ -74,6 +74,7 @@ export const login = async (req, res) => {
             httpOnly: true,
             secure: true,   // keep true for production
             maxAge: age,
+            sameSite: "None"
         }).status(200).json(userInfo);
 
         // You can use the token to determine whether or not the user is authenticated, whether or not a post or some sort of data belongs to the user, etc. 
