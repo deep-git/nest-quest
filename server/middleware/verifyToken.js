@@ -5,6 +5,8 @@ export const verifyToken = (req, res, next) => {
     const token = req.cookies.token;
     dotenv.config();
 
+    console.log("VERIFY TOKEN: ", token);
+
     if (!token) {
         return res.status(401).json({ message: "Not authenticated!" });
     }
