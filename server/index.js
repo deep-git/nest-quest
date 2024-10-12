@@ -17,6 +17,7 @@ dotenv.config();
 const allowedOrigins = [
     process.env.CLIENT_URL, // Production
     'https://nestquest-estate.netlify.app', // Production
+    'https://main--nestquest-estate.netlify.app',
     'http://localhost:5173' // Development
 ];
 
