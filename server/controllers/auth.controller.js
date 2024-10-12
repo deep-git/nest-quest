@@ -68,6 +68,8 @@ export const login = async (req, res) => {
 
         const { password: userPassword, ...userInfo } = user;
 
+        console.log("CREATE TOKEN: ", token);
+
         res.cookie("token", token, {
             httpOnly: true,
             secure: true,   // keep true for production
