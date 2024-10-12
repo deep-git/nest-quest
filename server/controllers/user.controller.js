@@ -163,7 +163,6 @@ export const savePost = async (req, res) => {
 export const getNotificationNumber = async (req, res) => {
     const tokenUserId = req.userId
 
-
     try {
         const number = await prisma.chat.count({
             where: {

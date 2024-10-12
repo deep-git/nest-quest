@@ -52,7 +52,9 @@ const MainNavbar = () => {
     const fetch = useNotificationStore((state) => state.fetch);
     const number = useNotificationStore((state) => state.number);
 
-    fetch();
+    if (currentUser) {
+        fetch();
+    }
 
     return (
         <div className="fixed w-full top-0 z-30">

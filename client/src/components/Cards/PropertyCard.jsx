@@ -6,9 +6,6 @@ import apiRequest from '../../lib/apiRequest';
 
 const PropertyCard = ({ property }) => {
 
-    console.log(property);
-
-    const [isLoading, setIsLoading] = useState(false);
     const { currentUser } = useContext(AuthContext);
     const ratingSystem = [1, 2, 3, 4, 5];
     const [saved, setSaved] = useState(false);
@@ -91,7 +88,7 @@ const PropertyCard = ({ property }) => {
 
                         <div className="hidden md:flex justify-center items-center gap-5 mr-5">
                             {saved && currentUser && currentUser.id !== property.userId && (
-                                <button disabled={isLoading} className={`flex justify-center items-center border ${saved ? "border-yellow-500" : "border-light_brown_3"} p-1 rounded-md`}>
+                                <button className={`flex justify-center items-center border ${saved ? "border-yellow-500" : "border-light_brown_3"} p-1 rounded-md`}>
                                     <Bookmark fill={`${saved ? "#eab308" : "#F6F4F3"}`} className={`w-5 h-5 ${saved ? "text-yellow-500" : "text-light_brown_3"}`} />
                                 </button>
                             )}

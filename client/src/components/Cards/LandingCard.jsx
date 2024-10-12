@@ -6,8 +6,6 @@ const LandingCard = ({ item }) => {
 
     const ratingSystem = [1, 2, 3, 4, 5];
 
-    console.log(item);
-
     let totalRating = 0;
 
     for (let i = 0; i < item.review.length; i++) {
