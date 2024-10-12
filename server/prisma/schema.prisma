@@ -1,0 +1,140 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  email     String   @unique
+  username  String   @unique
+  password  String
+  avatar    String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  posts     Post[]
+  SavedPost SavedPost?
+  review    Review[]
+
+  chatIDs   String[] @db.ObjectId
+  chats     Chat[]   @relation(fields: [chatIDs], references: [id])
+  Message   Message? @relation(fields: [messageId], references: [id])
+  messageId String?  @db.ObjectId
+}
+
+model Post {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  title     String
+  price     Int
+  images    String[]
+  address   String
+  city      String
+  bedroom   Int
+  bathroom  Int
+  latitude  String
+  longitude String
+  size      String?
+  type      Type
+  property  Property
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  userId String @db.ObjectId
+  user   User   @relation(fields: [userId], references: [id])
+
+  postDetail PostDetail?
+  SavedPost  SavedPost?
+  review     Review[]
+}
+
+model Review {
+  id     String @id @default(auto()) @map("_id") @db.ObjectId
+  rating Int?
+
+  userId String @db.ObjectId
+  user   User   @relation(fields: [userId], references: [id])
+
+  postId String @db.ObjectId
+  post   Post   @relation(fields: [postId], references: [id])
+
+  @@unique([userId, postId])
+}
+
+model PostDetail {
+  id          String  @id @default(auto()) @map("_id") @db.ObjectId
+  description String?
+  utilities   String?
+  pet         String?
+  income      String?
+  school      Int?
+  bus         Int?
+  restaurant  Int?
+
+  postId String @unique @db.ObjectId
+  post   Post   @relation(fields: [postId], references: [id], onDelete: Cascade)
+}
+
+enum Type {
+  Sale
+  Rent
+}
+
+enum Property {
+  Apartment
+  House
+  Condo
+  Land
+}
+
+model SavedPost {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+
+  userId String @unique @db.ObjectId
+  postId String @unique @db.ObjectId
+
+  user User @relation(fields: [userId], references: [id])
+  post Post @relation(fields: [postId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([userId, postId])
+}
+
+model Chat {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+
+  userIDs String[] @db.ObjectId
+  users   User[]   @relation(fields: [userIDs], references: [id])
+
+  createdAt DateTime @default(now())
+
+  seenBy String[] @db.ObjectId
+
+  messages    Message[]
+  lastMessage String?
+}
+
+model Message {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+
+  text   String
+  userId String
+
+  chatId String @db.ObjectId
+  chat   Chat   @relation(fields: [chatId], references: [id])
+
+  createdAt DateTime @default(now())
+  User      User[]
+}

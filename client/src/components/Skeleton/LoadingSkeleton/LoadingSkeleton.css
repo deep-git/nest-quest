@@ -1,0 +1,61 @@
+.skeleton {
+    background-color: #f0f0f0;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+.skeleton-image {
+    background-color: #e0e0e0;
+    border-radius: 8px;
+}
+
+.skeleton-title {
+    height: 20px;
+    width: 70%;
+    background-color: #e0e0e0;
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+
+.skeleton-text {
+    height: 10px;
+    background-color: #e0e0e0;
+    border-radius: 4px;
+}
+
+.skeleton-address {
+    width: 50%;
+}
+
+.skeleton-price {
+    width: 30%;
+}
+
+.skeleton-size {
+    width: 40%;
+}
+
+.skeleton-bed,
+.skeleton-bath {
+    width: 25%;
+}
+
+.skeleton-icon {
+    width: 20px;
+    height: 20px;
+    background-color: #e0e0e0;
+    border-radius: 50%;
+}
+
+.skeleton-stars {
+    display: flex;
+    gap: 2px;
+}
+
+.skeleton-button {
+    width: 50px;
+    height: 30px;
+    background-color: #e0e0e0;
+    border-radius: 4px;
+}

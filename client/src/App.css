@@ -1,0 +1,40 @@
+#root {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #F6F4F3;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.3s ease;
+}
+
+.spinner {
+  border: 8px solid rgba(0, 0, 0, 0.1);
+  /* Light border */
+  border-left-color: #7A695A;
+  animation: spin 1s linear infinite;
+  /* Spin animation */
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+    /* Rotate 360 degrees */
+  }
+}
