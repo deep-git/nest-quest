@@ -36,12 +36,12 @@ const SignUp = () => {
     }
     return (
         <div className="flex h-[calc(100vh-130px)]">
-            <div className="relative flex-1">
+            <div className="hidden lg:flex relative flex-1">
                 <img src="/auth_image_1.jpg" alt="" className="w-full h-full object-cover" />
                 <div className="absolute w-full h-full bg-black/30 top-0 left-0" />
             </div>
-            <form onSubmit={handleSubmit} className="flex flex-col gap-5 flex-1 bg-light_white justify-center items-center">
-                <div className="flex flex-col gap-5 w-[400px]">
+            <form onSubmit={handleSubmit} className="flex flex-col gap-5 flex-1 bg-light_white mt-20 lg:mt-0 lg:justify-center items-center">
+                <div className="flex flex-col gap-5 w-[90%] max-w-[400px]">
                     <h1 className="w-full text-4xl text-center">Sign Up</h1>
 
                     <div className="flex flex-col gap-2">

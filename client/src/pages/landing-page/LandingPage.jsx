@@ -88,7 +88,7 @@ const LandingPage = () => {
             </section>
 
             <section className="flex flex-col px-4 sm:px-20 w-full min-h-screen bg-light_white">
-                <h2 className="text-3xl mt-28 text-center font-semibold">Featured Property <span className="text-light_brown_1">For Rent</span></h2>
+                <h2 className="text-3xl mt-28 text-center font-semibold">Featured Properties <span className="text-light_brown_1">For Rent</span></h2>
 
                 <div className="flex gap-14 w-full mt-10 justify-center md:justify-start flex-wrap">
                     <Suspense fallback={<p>Loading...</p>}>
