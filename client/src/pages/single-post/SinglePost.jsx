@@ -131,6 +131,43 @@ const SinglePost = () => {
         setIsChatOpen((prev) => !prev);
     }
 
+    const handleCreateChat = async (e) => {
+        e.preventDefault();
+
+        setIsLoading(true);
+
+        if (!currentUser || currentUser === null) {
+            navigate("/login");
+            return;
+        }
+
+        try {
+            // Prepare the data for the chat creation
+            const response = await apiRequest.post("/chats", {
+                receiverId: post[0].userId
+            });
+
+            const chatData = await response.data;
+
+            // Navigate to the account page with chat details
+            navigate("/account", {
+                state: {
+                    openChatId: {
+                        id: post[0].userId,
+                        avatar: post[0].user.avatar,
+                        username: post[0].user.username,
+                        chatId: chatData.id, // Include chat ID if needed
+                    },
+                },
+            });
+
+        } catch (error) {
+            console.log(error);
+        } finally {
+            setIsLoading(false);
+        }
+    }
+
     const handleOpenChat = async (e) => {
         e.preventDefault();
 
@@ -142,7 +179,19 @@ const SinglePost = () => {
         }
 
         try {
-            navigate("/account", { state: { openChatId: { id: post[0].userId, avatar: post[0].user.avatar, username: post[0].user.username } } });
+            //const chatData = await response.data;
+
+            // Navigate to the account page with chat details
+            navigate("/account", {
+                state: {
+                    openChatId: {
+                        id: post[0].userId,
+                        avatar: post[0].user.avatar,
+                        username: post[0].user.username,
+                        //chatId: chatData.id, // Include chat ID if needed
+                    },
+                },
+            });
 
         } catch (error) {
             console.log(error);
@@ -246,7 +295,7 @@ const SinglePost = () => {
 
                         <div className="flex justify-end items-center mt-5 gap-4">
                             <button onClick={toggleChat} className="flex justify-center items-center gap-3 p-3 bg-light_brown_3/40 cursor-pointer rounded-md hover:bg-light_brown_3/30 transition duration-75">Cancel</button>
-                            <button onClick={handleOpenChat} disabled={isLoading} className="flex justify-center items-center gap-3 p-3 bg-dark_gray text-white cursor-pointer rounded-md hover:bg-dark_gray/90 transition duration-75">Open Messages</button>
+                            <button onClick={handleCreateChat} disabled={isLoading} className="flex justify-center items-center gap-3 p-3 bg-dark_gray text-white cursor-pointer rounded-md hover:bg-dark_gray/90 transition duration-75">Open Messages</button>
                         </div>
                     </div>
                 </div>

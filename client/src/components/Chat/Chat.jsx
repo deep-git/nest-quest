@@ -84,6 +84,7 @@ const Chat = ({ chats, openChatId }) => {
 
             // reset input
             e.target.reset;
+            e.target.text.reset;
 
             // emit/send message
             socket.emit("sendMessage", {
@@ -173,7 +174,7 @@ const Chat = ({ chats, openChatId }) => {
                                         alignSelf: message.userId === currentUser.id ? "flex-end" : "flex-start",
                                         textAlign: message.userId === currentUser.id ? "right" : "left",
                                     }}>
-                                        <p className={`text-[16px] w-max ${message.userId === currentUser.id ? "bg-light_brown_2/50 p-2 rounded-lg ml-auto" : "bg-light_brown_2/30 p-2 rounded-lg mr-auto"}`}>{message.text}</p>
+                                        <p className={`text-[16px] w-full ${message.userId === currentUser.id ? "bg-light_brown_2/50 p-2 rounded-lg ml-auto" : "bg-light_brown_2/30 p-2 rounded-lg mr-auto"}`}>{message.text}</p>
                                         <span className="text-[12px]">{format(message.createdAt)}</span>
                                     </div>
                                 ))}

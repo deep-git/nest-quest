@@ -15,6 +15,9 @@ const ProfilePage = () => {
     const { openChatId } = location.state || "";
     const [currentPage, setCurrentPage] = useState(openChatId !== "" ? "chats" : "details");
 
+    console.log(openChatId);
+    console.log(data);
+
     return (
         <div className="flex flex-col 2xl:flex-row gap-5">
             <div className="flex 2xl:hidden justify-around items-center w-full bg-light_brown_3/20 mt-5 px-10 py-5 border-b-2 border-light_brown_1">
