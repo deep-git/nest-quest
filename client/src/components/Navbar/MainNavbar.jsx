@@ -107,7 +107,9 @@ const MainNavbar = () => {
                                             <User />
                                         </div>
                                     )}
-                                    <span className="absolute -top-2 -right-2 bg-red-500 text-white flex justify-center items-center w-5 h-5 text-[14px] rounded-full">{number > 0 && number}</span>
+                                    {number > 0 && (
+                                        <span className="absolute -top-2 -right-2 bg-red-500 text-white flex justify-center items-center w-5 h-5 text-[14px] rounded-full">{number > 0 && number}</span>
+                                    )}
                                 </div>
                             </div>
                         ) : (
