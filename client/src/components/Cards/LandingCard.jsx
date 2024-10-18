@@ -67,7 +67,7 @@ const LandingCard = ({ item }) => {
                 </div>
             </div>
 
-            <div className="w-full border-t-[1px] border-light_brown_3 px-4 py-3">
+            <div className="w-full border-t-[1px] border-light_brown_3 px-4 py-3 mt-auto">
                 <span className="text-[16px] text-light_brown_1 font-semibold">$ {item.price.toLocaleString()}</span>
             </div>
         </div>

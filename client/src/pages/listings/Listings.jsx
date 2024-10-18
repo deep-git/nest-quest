@@ -20,11 +20,16 @@ const Listings = () => {
         property: searchParams.get("property") || "",
         minPrice: searchParams.get("minPrice") || 0,
         maxPrice: searchParams.get("maxPrice") || 10000000,
-        bedroom: searchParams.get("bedroom") || 1,
+        bedroom: searchParams.get("bedroom") || "any",
     });
+
+    console.log(searchParams.get("minPrice"));
 
     const handleChange = (e) => {
         const { name, value } = e.target;
+
+        console.log("NAME: ", name);
+        console.log("VALUE: ", value);
 
         setQuery({
             ...query,
@@ -97,6 +102,7 @@ const Listings = () => {
                                         defaultValue={query.property}
                                         onChange={handleChange}
                                         className="h-[40px] bg-light_white border border-light_brown_3 rounded-lg px-4 py-2">
+                                        <option>Any</option>
                                         <option>Apartment</option>
                                         <option>House</option>
                                         <option>Condo</option>
@@ -105,11 +111,11 @@ const Listings = () => {
                                 </div>
 
                                 <div className="hidden lg:flex flex-col gap-1 flex-1">
-                                    <label htmlFor="minprice">Min. Price</label>
+                                    <label htmlFor="minPrice">Min. Price</label>
                                     <input
-                                        id="minprice"
+                                        id="minPrice"
                                         type="number"
-                                        name="minprice"
+                                        name="minPrice"
                                         defaultValue={query.minPrice}
                                         onChange={handleChange}
                                         className="w-full h-[40px] px-4 py-2 rounded-lg border border-light_brown_3 bg-light_white"
@@ -117,11 +123,11 @@ const Listings = () => {
                                 </div>
 
                                 <div className="hidden lg:flex flex-col gap-1 flex-1">
-                                    <label htmlFor="maxprice">Max. Price</label>
+                                    <label htmlFor="maxPrice">Max. Price</label>
                                     <input
-                                        id="maxprice"
+                                        id="maxPrice"
                                         type="number"
-                                        name="maxprice"
+                                        name="maxPrice"
                                         defaultValue={query.maxPrice}
                                         onChange={handleChange}
                                         className="w-full h-[40px] px-4 py-2 rounded-lg border border-light_brown_3 bg-light_white"
@@ -130,11 +136,11 @@ const Listings = () => {
 
                                 <div className="flex lg:hidden gap-4">
                                     <div className="flex flex-col gap-1 flex-1">
-                                        <label htmlFor="minprice">Min. Price</label>
+                                        <label htmlFor="minPrice">Min. Price</label>
                                         <input
-                                            id="minprice"
+                                            id="minPrice"
                                             type="number"
-                                            name="minprice"
+                                            name="minPrice"
                                             defaultValue={query.minPrice}
                                             onChange={handleChange}
                                             className="w-full h-[40px] px-4 py-2 rounded-lg border border-light_brown_3 bg-light_white"
@@ -142,11 +148,11 @@ const Listings = () => {
                                     </div>
 
                                     <div className="flex flex-col gap-1 flex-1">
-                                        <label htmlFor="maxprice">Max. Price</label>
+                                        <label htmlFor="maxPrice">Max. Price</label>
                                         <input
-                                            id="maxprice"
+                                            id="maxPrice"
                                             type="number"
-                                            name="maxprice"
+                                            name="maxPrice"
                                             defaultValue={query.maxPrice}
                                             onChange={handleChange}
                                             className="w-full h-[40px] px-4 py-2 rounded-lg border border-light_brown_3 bg-light_white"
@@ -155,8 +161,8 @@ const Listings = () => {
                                 </div>
 
                                 <div className="flex flex-col gap-1 flex-1">
-                                    <label htmlFor="bedrooms">Bedrooms</label>
-                                    <select name="bedrooms" id="bedrooms" onChange={handleChange} className="h-[40px] bg-light_white border border-light_brown_3 rounded-lg px-4 py-2">
+                                    <label htmlFor="bedroom">Bedrooms</label>
+                                    <select name="bedroom" id="bedroom" defaultValue={query.bedroom} onChange={handleChange} className="h-[40px] bg-light_white border border-light_brown_3 rounded-lg px-4 py-2">
                                         <option>any</option>
                                         <option>1</option>
                                         <option>2</option>
