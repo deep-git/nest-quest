@@ -23,13 +23,8 @@ const Listings = () => {
         bedroom: searchParams.get("bedroom") || "any",
     });
 
-    console.log(searchParams.get("minPrice"));
-
     const handleChange = (e) => {
         const { name, value } = e.target;
-
-        console.log("NAME: ", name);
-        console.log("VALUE: ", value);
 
         setQuery({
             ...query,
